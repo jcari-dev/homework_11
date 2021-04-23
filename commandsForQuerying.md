@@ -101,3 +101,15 @@ db.vampires.find({ loves: { $nin: ['fancy cloaks','frilly shirtsleeves', 'appear
 have not killed more than 200 people
 
 db.vampires.find({ victims: {$lt: 200}}).pretty()
+
+Replace:
+
+replace the vampire called 'Claudia' with a vampire called 'Eve'. 'Eve' will have a key called 'portrayed_by' with the value 'Tilda Swinton'
+
+db.vampires.update({ name: 'Claudia'}, {name: 'Eve'}, {portrayed_by: 'Tilda Swinton'})
+
+replace the first male vampire with another whose name is 'Guy Man', and who has a key 'is_actually' with the value 'were-lizard'
+
+db.vampires.replaceOne({ gender: 'm'}, {name: 'Guy Man'}, {is_actually: 'were-lizard'})
+
+
