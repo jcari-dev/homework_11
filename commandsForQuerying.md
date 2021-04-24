@@ -114,16 +114,30 @@ replace the first male vampire with another whose name is 'Guy Man', and who has
 
     db.vampires.update({ name: 'Count Chocula'}, {$set : { name: 'Guy Man'}})
 
-    db.vampires.update({name: 'Eve'},{$set:{"is_actually":"were-lizard"}})
-
-    //brain is ham rn sry can't think much and combine them is hard LOL
-
-
+    db.vampires.update({name: 'Guy Man'},{$set:{"is_actually":"were-lizard"}})
 
 Update:
 
 Update 'Guy Man' to have a gender of 'f'
 
-db.vampires.update({ name: 'Guy Man'}, {gender: 'f'})
+    db.vampires.update({ name: 'Guy Man'}, {$set : { gender: 'f'}})
 
 Update 'Eve' to have a gender of 'm'
+
+    db.vampires.update({ name: 'Eve'}, {$set : { gender: 'm'}})
+
+Update 'Guy Man' to have an array called 'hates' that includes 'clothes' and 'jobs'
+
+    db.vampires.update({ name: 'Guy Man'}, {$addToSet: { hates: ['clothes', 'jobs']}})
+
+Update 'Guy Man's' hates array also to include 'alarm clocks' and 'jackalopes'
+
+    db.vampires.update( {name: 'Guy Man'},{$push:{hates:['alarm clocks', 'jackalopes']}})
+
+Rename 'Eve's' name field to 'moniker'
+
+    db.vampires.update( { name: 'Eve' }, { $rename: {'name': 'moniker'} } )
+
+We now no longer want to categorize female gender as "f", but rather as fems. 
+
+db.vampires.updateMany({gender: 'f'}, {$set: {gender: 'fems'}})
