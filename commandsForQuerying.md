@@ -88,28 +88,42 @@ Negative Selection:
 
 love ribbons but do not have brown eyes
 
-db.vampires.find({$and:[{ loves: 'ribbons'}, {eye_color: { $nin: ['brown']}}]}).pretty()
+    db.vampires.find({$and:[{ loves: 'ribbons'}, {eye_color: { $nin: ['brown']}}]}).pretty()
 
 are not from Rome
 
-db.vampires.find({ location: { $nin: ['Rome']}}).pretty()
+    db.vampires.find({ location: { $nin: ['Rome']}}).pretty()
 
 do not love any of the following: [fancy cloaks, frilly shirtsleeves, appearing innocent, being tragic, brooding]
 
-db.vampires.find({ loves: { $nin: ['fancy cloaks','frilly shirtsleeves', 'appearing innocent', 'being tragic', 'brooding']}}).pretty()
+    db.vampires.find({ loves: { $nin: ['fancy cloaks','frilly shirtsleeves', 'appearing innocent', 'being tragic', 'brooding']}}).pretty()
 
 have not killed more than 200 people
 
-db.vampires.find({ victims: {$lt: 200}}).pretty()
+    db.vampires.find({ victims: {$lt: 200}}).pretty()
 
 Replace:
 
 replace the vampire called 'Claudia' with a vampire called 'Eve'. 'Eve' will have a key called 'portrayed_by' with the value 'Tilda Swinton'
 
-db.vampires.update({ name: 'Claudia'}, {name: 'Eve'}, {portrayed_by: 'Tilda Swinton'})
+    db.vampires.updateOne({ name: 'Claudia'}, {$set : { name: 'Eve'}})
+    
+    db.vampires.update({name: 'Eve'},{$set:{"portrayed_by":"Tilda Swinton"}})
 
 replace the first male vampire with another whose name is 'Guy Man', and who has a key 'is_actually' with the value 'were-lizard'
 
-db.vampires.replaceOne({ gender: 'm'}, {name: 'Guy Man'}, {is_actually: 'were-lizard'})
+    db.vampires.update({ name: 'Count Chocula'}, {$set : { name: 'Guy Man'}})
+
+    db.vampires.update({name: 'Eve'},{$set:{"is_actually":"were-lizard"}})
+
+    //brain is ham rn sry can't think much and combine them is hard LOL
 
 
+
+Update:
+
+Update 'Guy Man' to have a gender of 'f'
+
+db.vampires.update({ name: 'Guy Man'}, {gender: 'f'})
+
+Update 'Eve' to have a gender of 'm'
