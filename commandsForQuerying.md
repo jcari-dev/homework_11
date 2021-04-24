@@ -140,4 +140,14 @@ Rename 'Eve's' name field to 'moniker'
 
 We now no longer want to categorize female gender as "f", but rather as fems. 
 
-db.vampires.updateMany({gender: 'f'}, {$set: {gender: 'fems'}})
+    db.vampires.updateMany({gender: 'f'}, {$set: {gender: 'fems'}})
+
+Remove: 
+
+Remove a single document wherein the hair_color is 'brown'
+
+    db.vampires.deleteOne({hair_color: 'brown'})
+
+We found out that the vampires with the blue eyes were just fakes! Let's remove all the vampires who have blue eyes from our database.
+
+    db.vampires.remove({eye_color: 'blue'})
